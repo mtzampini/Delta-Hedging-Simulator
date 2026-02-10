@@ -17,7 +17,7 @@ The simulation quantifies the **Hedging Error** (P&L variance) caused by Gamma r
 
 ## Tech Stack
 - **Language:** Python 3.x
-- **Core Libraries:** NumPy (Vectorized calc), SciPy (Stats), Pandas (Data handling).
+- **Core Libraries:** NumPy (Vectorized calc), SciPy (Stats).
 - **Data & Viz:** yfinance (Market API), Matplotlib (Performance visualization).
 
 ## Project Structure
@@ -39,6 +39,11 @@ $$dS_t = \mu S_t dt + \sigma S_t dW_t$$
 In the backtesting module, volatility $\sigma$ is estimated via the standard deviation of historical log-returns:
 $$R_{log} = \ln\left(\frac{S_t}{S_{t-1}}\right), \quad \sigma_{realized} = \text{std}(R_{log}) \times \sqrt{252}$$
 
+## Future Improvements
+- [ ] Implementation of **Gamma Hedging** to neutralize convexity risk.
+- [ ] Integration of **GARCH(1,1)** for dynamic volatility forecasting.
+- [ ] Transaction cost modeling (Bid-Ask spread simulation).
+
 ## Usage
 
 ### 1. Run Theoretical Simulation
@@ -52,8 +57,3 @@ Test how the strategy would have performed on the S&P 500 (SPY) during 2023.
 ```bash
 python run_backtest.py
 ```
-
-## Future Improvements
-- [ ] Implementation of **Gamma Hedging** to neutralize convexity risk.
-- [ ] Integration of **GARCH(1,1)** for dynamic volatility forecasting.
-- [ ] Transaction cost modeling (Bid-Ask spread simulation).
