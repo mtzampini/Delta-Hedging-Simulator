@@ -1,26 +1,13 @@
-# Dynamic Delta Hedging Simulator
+## Usage Modes
 
-## Overview
-This project simulates a dynamic hedging strategy for European Call Options. It models the underlying asset using **Geometric Brownian Motion (GBM)** and implements a discrete-time **Delta Hedging** strategy based on the **Black-Scholes-Merton** framework.
+This project includes two distinct execution modes to compare theory vs. reality:
 
-The simulation quantifies the **Hedging Error** introduced by discrete rebalancing (gamma risk) and visualizes the P&L distribution of the hedged portfolio over time.
+### 1. Market Simulation (Theoretical)
+Run `run_montecarlo.py` to simulate hedging under ideal Geometric Brownian Motion conditions.
+- **Goal:** Verify the convergence of Delta Hedging to zero P&L in a friction-less, continuous environment.
+- **Outcome:** Validates the Black-Scholes assumptions.
 
-## Key Features
-- **Market Simulation:** Generates stochastic price paths via GBM.
-- **Pricing Engine:** Implements closed-form Black-Scholes pricing and Greeks derivation (Delta).
-- **Risk Management:** Simulates weekly portfolio rebalancing to maintain delta-neutrality.
-- **Analytics:** Visualizes the convergence of the hedged portfolio vs. theoretical risk-free growth.
-
-## Tech Stack
-- **Language:** Python 3.x
-- **Libraries:** NumPy (Vectorized calc), SciPy (Stats), Matplotlib (Visualization)
-
-## Mathematical Framework
-The simulation relies on the discrete approximation of the SDE:
-$$dS_t = \mu S_t dt + \sigma S_t dW_t$$
-Where hedging positions are updated at discrete intervals $\Delta t$, leading to a non-zero P&L variance due to convexity (Gamma).
-
-## Future Improvements
-- [ ] Integration of Transaction Costs models.
-- [ ] Implementation of Reinforcement Learning (DQN) for optimal hedging under friction.
-- [ ] Comparison with localized volatility models.
+### 2. Historical Backtest (Empirical)
+Run `run_backtest.py` to test the strategy against real market data (e.g., SPY 2023-2024) via `yfinance`.
+- **Goal:** Quantify the impact of discrete rebalancing (Gamma risk) and real-world volatility clustering.
+- **Outcome:** Reveals the "Gamma Leakage" (e.g., ~$15 residual P&L on SPY) due to weekly rebalancing gaps.
