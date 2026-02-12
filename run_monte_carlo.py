@@ -18,8 +18,6 @@ def generate_asset_path(S0, T, r, sigma, n_steps):
     
     return np.array(prices)
 
-import matplotlib.pyplot as plt
-
 # parameters
 S0 = 100      # initial stock price
 K = 100       # strike price
@@ -88,4 +86,5 @@ plt.xlabel('Weeks')
 plt.ylabel('P&L ($)')
 plt.legend()
 plt.grid(True)
+
 plt.show()
